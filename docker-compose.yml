@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  my-nginx:
+    image: my-nginx
+    container_name: mynginxCars
+    ports:
+      - 8080:8080
+ 
+  go-get-srv:
+    image: go-get-srv
+    container_name: getsrv
+    ports:
+      - 8082:8082
+    env_file: 
+      ./mygetsrv/.env
+
+  go-post-srv:
+    image: go-post-srv
+    container_name: postsrv
+    ports:
+      - 8081:8081
+    env_file: 
+      ./mypostsrv/.env
+  
+  my-mariadb:
+    image: my-mariadb
+    container_name: mymariadb
+    ports: 
+      - 3306:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: "supersecret"
+
